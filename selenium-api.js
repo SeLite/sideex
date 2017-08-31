@@ -3623,6 +3623,9 @@ Selenium.prototype.doEditContent = function(locator, value) {
     var element = this.browserbot.findElement(locator);
     var editable = element.contentEditable;
 
+    console.error("editable: ", editable);
+    console.error("parent node: ", element.parentNode.contentEditable);
+    console.error("element: ", element);
     if (editable == "true") {
         element.innerHTML = escapeHTML(value);
     } else {

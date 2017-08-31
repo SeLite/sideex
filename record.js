@@ -557,6 +557,7 @@ window.addEventListener('contextmenu', function(event) {
 var getEle;
 var checkFocus = 0;
 window.addEventListener('focus', function(event) {
+    console.log("in foucus");
     var editable = event.target.contentEditable;
     if (editable == 'true') {
         getEle = event.target;
@@ -566,9 +567,12 @@ window.addEventListener('focus', function(event) {
 }, true);
 
 window.addEventListener('blur', function(event) {
+    console.log("in blur");
     if (checkFocus == 1) {
         if (event.target == getEle) {
             if (getEle.innerHTML != contentTest) {
+                console.log("is different");
+                console.error("record element", event.target);
                 record("editContent", locatorBuilders.buildAll(event.target), getEle.innerHTML);
             }
             checkFocus = 0;
