@@ -328,14 +328,21 @@ browser.runtime.onMessage.addListener(function contentWindowIdListener(message) 
 })
 
 function notification(command, target, value) {
+    console.log("notification: ", notificationCount);
     let tempCount = String(notificationCount);
-    notificationCount++;
-    browser.notifications.create(tempCount, {
-        "type": "basic",
-        "title": "Record command!",
-        "message": "command: " + String(command) + "\ntarget: " + String(target[0][0]) + "\nvalue: " + String(value) 
-    });
-
+    try {
+        notificationCount++;
+        browser.notifications.create(tempCount, {
+            "type": "basic",
+            "title": "Record command!",
+            "message": "command: " + String(command) + "\ntarget: " + String(target[0][0]) + "\nvalue: " + String(value) 
+        }).then(function(notificationId) {
+            console.log("success notification");
+        }).catch(function(e) {console.error(e);});
+    } catch (e) {
+        console.error(e);
+    }
+    console.log("finish");
     setTimeout(function() {
         browser.notifications.clear(tempCount);
     }, 1500);
