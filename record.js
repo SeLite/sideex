@@ -3,6 +3,7 @@ var locatorBuilders = new LocatorBuilders(window);
 //Record: ClickAt
 var preventClickTwice = false;
 window.addEventListener("click", function(event) {
+    console.log("click");
     if (event.button == 0 && !preventClick && event.isTrusted) {
         if (!preventClickTwice) {
             var top = event.pageY,
@@ -579,3 +580,6 @@ window.addEventListener('blur', function(event) {
         }
     }
 }, true);
+
+
+console.log("finish record listener");

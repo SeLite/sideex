@@ -334,6 +334,7 @@ function notification(command, target, value) {
         notificationCount++;
         browser.notifications.create(tempCount, {
             "type": "basic",
+            "iconUrl": "/icons/icons-48.png",
             "title": "Record command!",
             "message": "command: " + String(command) + "\ntarget: " + String(target[0][0]) + "\nvalue: " + String(value) 
         }).then(function(notificationId) {
